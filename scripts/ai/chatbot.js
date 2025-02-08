@@ -1,12 +1,18 @@
 import OpenAI from "openai";
+import dotenv from 'dotenv';
+
+// Load environment variables from the .env file
+dotenv.config();
+
+// Use the API key from the environment variable
 const openai = new OpenAI({
-    apiKey: 'randomapi',
+    apiKey: process.env.OPENAI_API_KEY,  // Use the API key from the .env file
   });
 
 let conversationHistory = [
     // Start the conversation with the system and user messages
-    { role: "system", content: "You are a helpful assistant." },
-    { role: "user", content: "Hello! I would like to learn more about programming." }
+    { role: "system", content: "You are a conversationalist who must engage in conversation with a person learning Spanish." },
+    { role: "user", content: "Start a conversation using gato, pescado, and silla as the main vocabulary words that I want to practice." }
 ];
   
 async function getChatResponse() {
@@ -32,25 +38,9 @@ const firstResponse = await getChatResponse();
 console.log("Assistant's first question:", firstResponse);
   
 // Step 2: Let's assume the user responds now
-const userResponse = "I want to learn about loops in programming.";
+const userResponse = "Can you repeat the question?";
 conversationHistory.push({ role: "user", content: userResponse });
 
 // Step 3: Now, the assistant asks a follow-up question based on the user's response
 const secondResponse = await getChatResponse();
 console.log("Assistant's second question:", secondResponse);
-
-// Not back-and-forth working code
-
-// const completion = await openai.chat.completions.create({
-//     model: "gpt-4o-mini",
-//     messages: [
-//         { role: "system", content: "You are a friendly conversationalist. Feel free to engage in casual, back-and-forth conversations." },
-//         {
-//             role: "user",
-//             content: "Have a conversation in Spanish using the following words: cat, adventure, New York City",
-//         },
-//     ],
-//     store: true,
-// });
-
-// console.log(completion.choices[0].message);
