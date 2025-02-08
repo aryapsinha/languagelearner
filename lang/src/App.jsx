@@ -44,8 +44,15 @@ function App() {
       <div className = "row justify-content-left">
         <div className = "col-6">
           <br />
-          <h1>Hello</h1>
+          <h1>My Words</h1>
           <table className = "table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>English</th>
+                  <th>Spanish</th>
+                  <th>Source</th>
+                </tr>
+              </thead>
               <NewRow className="tab" eng="Hello" span="Hola" source="url" />
               <NewRow className="tab" eng="Bye" span="Adios" source="url" />
           </table>
