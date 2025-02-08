@@ -1,46 +1,65 @@
 import OpenAI from "openai";
 import dotenv from 'dotenv';
+import readline from 'readline';
 
-// Load environment variables from the .env file
+// Load environment variables
 dotenv.config();
 
-// Use the API key from the environment variable
+// Initialize OpenAI
 const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,  // Use the API key from the .env file
-  });
+    apiKey: process.env.OPENAI_API_KEY,
+});
 
+// Create an interface for user input in the terminal
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+// Conversation history
 let conversationHistory = [
-    // Start the conversation with the system and user messages
-    { role: "system", content: "You are a conversationalist who must engage in conversation with a person learning Spanish." },
-    { role: "user", content: "Start a conversation using gato, pescado, and silla as the main vocabulary words that I want to practice." }
+    { role: "system", content: "You are a conversationalist who must engage in conversation with me the user who is learning chinese." },
+    { role: "user", content: "Start a conversation with me using cat, bowl, and fish as the main vocabulary words that I want to practice." }
 ];
-  
-async function getChatResponse() {
-    // Make the API call with the current conversation history
-    const completion = await openai.chat.completions.create({
-      model: "gpt-4o-mini",  // Or whichever model you're using
-      messages: conversationHistory,
-      store: true,
-    });
-  
-    // Get the assistant's response
-    const assistantMessage = completion.choices[0].message.content;
-  
-    // Add the assistant's response to the conversation history
-    conversationHistory.push({ role: "assistant", content: assistantMessage });
-  
-    // Log the assistant's response only once here
-    return assistantMessage;
-}
-  
-// Step 1: Initial request to get the first question
-const firstResponse = await getChatResponse();
-console.log("Assistant's first question:", firstResponse);
-  
-// Step 2: Let's assume the user responds now
-const userResponse = "Can you repeat the question?";
-conversationHistory.push({ role: "user", content: userResponse });
 
-// Step 3: Now, the assistant asks a follow-up question based on the user's response
-const secondResponse = await getChatResponse();
-console.log("Assistant's second question:", secondResponse);
+// Function to get assistant response
+async function getChatResponse() {
+    try {
+        const completion = await openai.chat.completions.create({
+            model: "gpt-4o-mini",
+            messages: conversationHistory
+        });
+
+        const assistantMessage = completion.choices[0].message.content;
+        console.log("\nAssistant:", assistantMessage); // Display response
+        
+        conversationHistory.push({ role: "assistant", content: assistantMessage });
+
+        return assistantMessage;
+    } catch (error) {
+        console.error("Error getting response:", error);
+    }
+}
+
+// Function to handle user input and continue conversation
+function startConversation() {
+    getChatResponse().then(() => {
+        rl.prompt();
+        rl.on("line", async (input) => {
+            if (input.toLowerCase() === "bye") {
+                console.log("Goodbye!");
+                rl.close();
+                return;
+            }
+
+            conversationHistory.push({ role: "user", content: input });
+
+            await getChatResponse();
+
+            rl.prompt();
+        });
+    });
+}
+
+// Start the conversation
+startConversation();
