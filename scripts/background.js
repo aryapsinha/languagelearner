@@ -1,1 +1,1 @@
-// background.js
+// background.js - listen for messages from content.js and display popup when text is selected
