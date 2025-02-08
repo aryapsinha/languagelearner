@@ -1,9 +1,15 @@
-// content.js - detect highlighted text
-$(document).on('mouseup', function () { // on mouse button release
-    const selectedText = window.getSelection().toString().trim();
-    
-    // send a message to the background script with the selected text
-    if (selectedText.length > 0) {
-      chrome.runtime.sendMessage({ type: 'highlight', text: selectedText });
-    }
+// content.js - detect highlighted text & send message to background.js
+console.log('content.js loaded');
+
+document.addEventListener('mouseup', function () {
+  const selectedText = window.getSelection().toString().trim();
+  console.log('Selected text:', selectedText);
+  
+  if (selectedText.length > 0) {
+    chrome.runtime.sendMessage({ type: 'highlight', text: selectedText });
+  }
+  else
+  {
+    console.log('No text selected');
+  }
 });
