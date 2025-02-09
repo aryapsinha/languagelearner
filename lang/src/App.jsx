@@ -40,7 +40,7 @@ function App() {
     { eng: "Cockroach", spanish: "Cucaracha", source: "url" },
     { eng: "Pencil Sharpener", spanish: "Sacapuntas", source: "url" },
   ];
-  
+
   const chineseVocabulary = [
     { eng: "Hello", chinese: "你好", source: "url" },
     { eng: "Bye", chinese: "再见", source: "url" },
@@ -50,7 +50,7 @@ function App() {
   ];
 
   const vocabularyList = selectedLanguage === "spanish" ? spanishVocabulary : chineseVocabulary;
-  
+
 
   // Handle star click: Toggle the selected state based on Spanish word
   const handleStarClick = (word) => {
@@ -69,14 +69,14 @@ function App() {
       alert("Please provide both language and vocabulary words.");
       return;
     }
-    
+
     try {
       // Send language and words to the backend to initialize conversation
       const response = await axios.post("http://localhost:4000/start-conversation", {
         language: language,
         words: selectedWords.join(", "),
       });
-      
+
       // Set the assistant's first message in the conversation history
       setMessages([{ role: "assistant", content: response.data.message }]);
     } catch (error) {
@@ -87,10 +87,10 @@ function App() {
 
   const sendMessage = async () => {
     if (!input) return;
-  
+
     // Add the user message to the messages state
     setMessages([...messages, { role: "user", content: input }]);
-  
+
     try {
       console.log("hello");
       // Send the message to the backend server (make sure to use the correct backend URL)
@@ -99,7 +99,7 @@ function App() {
       });
 
       console.log(response.data)
-  
+
       // Add assistant response to the messages state
       setMessages([
         ...messages,
@@ -109,7 +109,7 @@ function App() {
     } catch (error) {
       console.error("Error sending message:", error);
     }
-  
+
     setInput(""); // Clear the input
   };
 
@@ -120,67 +120,81 @@ function App() {
   };
 
   return (
-    <div className = "container">
-      <div className = "row justify-content-left">
-        <div className = "col-6">
+    <div className="container">
+      <div className="row justify-content-left">
+        <div className="col-6">
           <br />
           <h1>My Words</h1>
-          <div>
+          <div className="language-label-container">
             <label>Choose Language: </label>
-            <select 
-              value={selectedLanguage} 
+            <select
+              value={selectedLanguage}
               onChange={(e) => setSelectedLanguage(e.target.value)}
+              style={{ marginLeft: "10px" }}
             >
               <option value="spanish">Spanish</option>
               <option value="chinese">Chinese</option>
             </select>
           </div>
-          <table className = "table table-bordered table-striped">
-              <thead>
-                <tr>
-                  <th>English</th>
-                  <th>{selectedLanguage === "spanish" ? "Spanish" : "Chinese"}</th>
-                  <th>Source</th>
-                  <th>Star</th>
-                </tr>
-              </thead>
-              <tbody>
-  {vocabularyList.map((word, index) => (
-    <NewRow
-      key={index}
-      eng={word.eng}
-      span={selectedLanguage === "spanish" ? word.spanish : word.chinese}
-      source={word.source}
-      onStarClick={handleStarClick}
-      isStarred={selectedWords.includes(selectedLanguage === "spanish" ? word.spanish : word.chinese)}
-    />
-  ))}
-</tbody>
+          <table className="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>English</th>
+                <th>{selectedLanguage === "spanish" ? "Spanish" : "Chinese"}</th>
+                <th>Source</th>
+                <th>Star</th>
+              </tr>
+            </thead>
+            <tbody>
+              {vocabularyList.map((word, index) => (
+                <NewRow
+                  key={index}
+                  eng={word.eng}
+                  span={selectedLanguage === "spanish" ? word.spanish : word.chinese}
+                  source={word.source}
+                  onStarClick={handleStarClick}
+                  isStarred={selectedWords.includes(selectedLanguage === "spanish" ? word.spanish : word.chinese)}
+                />
+              ))}
+            </tbody>
           </table>
         </div>
         <div className="col-6 pt-4">
           <h1>Chatbot</h1>
 
           {/* Language and vocabulary input fields */}
-          <div>
+          <div className="language-choice-container">
             <label>Language: </label>
-            <input
-              type="text"
-              placeholder="Enter the language you are learning"
-              value={language}
-              onChange={(e) => setLanguage(e.target.value)}
-            />
+            <div className="language-input-container">
+              <input
+                type="text"
+                placeholder="Enter a language"
+                value={language}
+                onChange={(e) => setLanguage(e.target.value)}
+                className="language-input"
+              />
+            </div>
+
           </div>
-          <div>
+          <div className="vocabulary-words-container">
             <label>Vocabulary words (star from table): </label>
-            <input
-              type="text"
-              placeholder="Starred words"
-              value={selectedWords.join(", ")}
-              readOnly
-            />
+            <div className="starred-words-container">
+              <input
+                type="text"
+                placeholder="Starred words"
+                value={selectedWords.join(", ")}
+                readOnly
+                className="starred-words-input"
+                style={{
+                  width: `${Math.max(200, selectedWords.length * 10)}px`, // Dynamically adjust width
+                }}
+              />
+            </div>
+
           </div>
-          <button onClick={startConversation}>Start Conversation</button>
+          <button onClick={startConversation} className="light-blue-button">
+            Start Conversation
+          </button>
 
           {/* Chatbox for displaying messages */}
           <div className="chat-box" style={{ maxHeight: "300px", overflowY: "auto", marginTop: "20px" }}>
@@ -202,7 +216,7 @@ function App() {
               placeholder="Type a message..."
               style={{ width: "80%", padding: "10px" }}
             />
-            <button onClick={sendMessage} style={{ padding: "10px" }}>Send</button>
+            <button onClick={sendMessage} className="send-button">Send</button>
           </div>
         </div>
       </div>

@@ -36,3 +36,104 @@
     transform: rotate(360deg);
   }
 }
+
+.language-label-container {
+  padding-bottom: 5px;
+}
+
+.language-choice-container {
+  padding-bottom: 5px;
+}
+
+.vocabulary-words-container {
+  padding-bottom: 20px;
+}
+
+.light-blue-button {
+  background-color: #ADD8E6;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.light-blue-button:hover {
+  background-color: #87CEEB; /* Slightly darker blue on hover */
+}
+
+/* Add these styles to your App.css or the appropriate CSS file */
+
+.starred-words-input {
+  padding: 5px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #f0f8ff;  /* Light blue background */
+  min-width: 200px;           /* Minimum width */
+  width: auto;                /* Width will be adjusted dynamically */
+  transition: width 0.3s ease;  /* Smooth transition for resizing */
+  display: inline-block;
+}
+
+.starred-words-container {
+  display: flex;
+  align-items: center;
+  margin-top: 2px;
+}
+
+.starred-words-input[readonly] {
+  cursor: not-allowed;
+  background-color: #e9ecef;  /* Lighter background for readonly */
+}
+
+/* Add these styles to your App.css or the appropriate CSS file */
+
+/* Style for the language input field */
+.language-input {
+  padding: 5px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #f0f8ff;  /* Light blue background */
+  min-width: 200px;           /* Minimum width */
+  width: auto;                /* Width adjusts dynamically */
+  transition: width 0.3s ease;  /* Smooth transition for resizing */
+  display: inline-block;
+}
+
+.language-input-container {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.language-input:focus {
+  border-color: #5c9ded; /* Highlighted border color when the input is focused */
+  outline: none;
+}
+
+/* Style for the Send button */
+.send-button {
+  padding: 12px 20px;
+  background-color: #4caf50;  /* Green background */
+  color: white;
+  border: none;
+  border-radius: 8px;         /* Rounded corners */
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;  /* Smooth transition effects */
+}
+
+.send-button:hover {
+  background-color: #45a049;  /* Darker green on hover */
+  transform: translateY(-2px);  /* Lift effect on hover */
+}
+
+.send-button:active {
+  background-color: #388e3c;  /* Even darker green on active press */
+  transform: translateY(0);    /* Reset the transform when clicked */
+}
+
+.send-button:focus {
+  outline: none;  /* Remove the default focus outline */
+  box-shadow: 0 0 5px 2px rgba(72, 255, 88, 0.7);  /* Green glow on focus */
+}
