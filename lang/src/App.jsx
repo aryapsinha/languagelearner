@@ -32,13 +32,25 @@ function App() {
   const [input, setInput] = useState("");
   const [language, setLanguage] = useState("");
   const [selectedWords, setSelectedWords] = useState([]);
+  const [selectedLanguage, setSelectedLanguage] = useState("spanish");
 
-  const vocabulary = [
-    { eng: "Hello", span: "Hola", source: "url" },
-    { eng: "Cat", span: "Gato", source: "url" },
-    { eng: "Cucaracha", span: "Cockroach", source: "url" },
-    { eng: "Sacapuntas", span: "Pencil Sharpener", source: "url" },
+  const spanishVocabulary = [
+    { eng: "Hello", spanish: "Hola", source: "url" },
+    { eng: "Cat", spanish: "Gato", source: "url" },
+    { eng: "Cockroach", spanish: "Cucaracha", source: "url" },
+    { eng: "Pencil Sharpener", spanish: "Sacapuntas", source: "url" },
   ];
+  
+  const chineseVocabulary = [
+    { eng: "Hello", chinese: "你好", source: "url" },
+    { eng: "Bye", chinese: "再见", source: "url" },
+    { eng: "Thank you", chinese: "谢谢", source: "url" },
+    { eng: "Funny", chinese: "好笑", source: "url" },
+    // Add more Chinese words as needed
+  ];
+
+  const vocabularyList = selectedLanguage === "spanish" ? spanishVocabulary : chineseVocabulary;
+  
 
   // Handle star click: Toggle the selected state based on Spanish word
   const handleStarClick = (word) => {
@@ -107,54 +119,46 @@ function App() {
     }
   };
 
-  /*return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );*/
   return (
     <div className = "container">
       <div className = "row justify-content-left">
         <div className = "col-6">
           <br />
           <h1>My Words</h1>
+          <div>
+            <label>Choose Language: </label>
+            <select 
+              value={selectedLanguage} 
+              onChange={(e) => setSelectedLanguage(e.target.value)}
+            >
+              <option value="spanish">Spanish</option>
+              <option value="chinese">Chinese</option>
+            </select>
+          </div>
           <table className = "table table-bordered table-striped">
               <thead>
                 <tr>
                   <th>English</th>
-                  <th>Spanish</th>
+                  <th>{selectedLanguage === "spanish" ? "Spanish" : "Chinese"}</th>
                   <th>Source</th>
                   <th>Star</th>
                 </tr>
               </thead>
               <tbody>
-  {vocabulary.map((word, index) => (
+  {vocabularyList.map((word, index) => (
     <NewRow
       key={index}
       eng={word.eng}
-      span={word.span}
+      span={selectedLanguage === "spanish" ? word.spanish : word.chinese}
       source={word.source}
       onStarClick={handleStarClick}
-      isStarred={selectedWords.includes(word.span)} // Check if the Spanish word is starred
+      isStarred={selectedWords.includes(selectedLanguage === "spanish" ? word.spanish : word.chinese)}
     />
   ))}
 </tbody>
           </table>
         </div>
-        <div className="col-6">
+        <div className="col-6 pt-4">
           <h1>Chatbot</h1>
 
           {/* Language and vocabulary input fields */}
