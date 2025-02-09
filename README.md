@@ -37,17 +37,19 @@ Through continuous communication, adaptability, and creative problem-solving, we
 
 ## Accomplishments that we're proud of
 
-We were able to use OpenAI's API to personalize a chatbot to converse with users.
+Personalized AI Chatbot – Successfully integrated OpenAI’s API to create a chatbot that engages users in dynamic conversations.
 
-We made a Chrome extension that allows users to personalize their learning with real-life vocabulary terms.
+Customizable Chrome Extension – Built a Chrome extension that allows users to personalize their learning with real-world vocabulary and provides real-time translations.
 
-We streamlined the process of having the chatbot incorporate terms into the conversation by adding a feature where the user can star certain terms they want to practice.
+Seamless Vocabulary Integration – Streamlined chatbot interactions by enabling users to star specific terms they want to practice in conversation.
 
 
 ## What we learned
-We learned how to create a web application using Node.js and React, and enhance our web development (HTML/CSS) skills with tools such as Bootstrap. In this process, we learned how to use OpenAI's API to implement a language learning specific chatbot to converse with users while integrating select vocabulary words into the conversation.
+Full-Stack Development – Gained experience in building a web application using Node.js and React, while refining our HTML/CSS skills with tools like Bootstrap.
 
-Moreover, we learned how to manage packages and environments with GitHub.
+AI Integration – Learned to leverage OpenAI’s API to develop a chatbot tailored for language learning, seamlessly incorporating user-selected vocabulary into conversations.
+
+Version Control & Package Management – Improved our ability to manage packages and environments efficiently using GitHub.
 
 ## What's next for Found 
 - Audio/voice chatbot
