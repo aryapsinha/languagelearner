@@ -6,7 +6,11 @@ document.addEventListener('mouseup', function () {
   console.log('Selected text:', selectedText);
   
   if (selectedText.length > 0) {
-    chrome.runtime.sendMessage({ type: 'highlight', text: selectedText });
+    try {
+      chrome.runtime.sendMessage({ type: 'highlight', text: selectedText });
+    } catch (error) {
+      console.error('Error sending message:', error);
+    }
   }
   else
   {
