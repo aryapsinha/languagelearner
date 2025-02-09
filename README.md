@@ -25,9 +25,9 @@ Connected to OpenAI API to integrate a conversational assistant into Found in Tr
 
 ## Challenges we ran into
 
-One of the main challenges we encountered was integrating multiple components, which included the Chrome extension, stored data, web app, and chatbot, into one cohesive product. To combat this, we practiced iterative programming, merged frequently. This taught us how to divide and conquer and lean on the support of our teammates 
+One of our biggest challenges was integrating multiple components—Chrome extension, stored data, web app, and chatbot—into a seamless and cohesive product. To tackle this, we embraced iterative development, merged frequently, and collaborated effectively. This approach taught us how to divide and conquer while leveraging the strengths of our teammates.
 
-Overall, we communicated with each other, learned on the fly, and thought outside of the box to overcome these challenges.
+Through continuous communication, adaptability, and creative problem-solving, we overcame these challenges and built a robust language-learning tool.
 
 ## Accomplishments that we're proud of
 
