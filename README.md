@@ -56,15 +56,13 @@ Through continuous communication, adaptability, and creative problem-solving, we
 - Vocabulary defintions
 - Starred terms
 
-## Environment Set Up
-install openai
-node.js
-React
-install bootstrap
-install express
-React
-dotenv
-web-vitals
-axios
-concurrently
-install openai
+## Environment set up
+- React
+- Node.js
+npm install openai
+npm install bootstrap
+npm install express
+npm install dotenv
+npm install web-vitals
+npm install axios
+npm install concurrently
