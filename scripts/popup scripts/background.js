@@ -1,12 +1,16 @@
 // background.js - receive message from content.js, opens popup & send message to update.js
 console.log('background.js loaded');
 
+let languageMap = {};
+
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.type === 'highlight') {
         console.log('Message received:', message);
         chrome.action.openPopup(() => {
             translateText(message.text).then(({ translatedText, detectedLanguage }) => {
-                chrome.runtime.sendMessage({ type: 'highlight', text: message.text, translatedText: translatedText, detectedLanguage: detectedLanguage });
+                const languageName = new Intl.DisplayNames(['en'], { type: 'language' }).of(detectedLanguage).split(' ')[0];
+                console.log('Language Name:', languageName);
+                chrome.runtime.sendMessage({ type: 'highlight', text: message.text, translatedText: translatedText, detectedLanguage: languageName });
             }).catch(error => {
                 console.error('Translation error:', error);
             });
