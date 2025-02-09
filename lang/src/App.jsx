@@ -130,10 +130,11 @@ function App() {
             <select
               value={selectedLanguage}
               onChange={(e) => setSelectedLanguage(e.target.value)}
-              style={{ marginLeft: "10px" }}
+              className="select-language"
             >
               <option value="spanish">Spanish</option>
               <option value="chinese">Chinese</option>
+              {/* Add more options here */}
             </select>
           </div>
           <table className="table table-bordered table-striped">
