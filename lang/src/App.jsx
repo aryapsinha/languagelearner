@@ -199,9 +199,13 @@ function App() {
           {/* Chatbox for displaying messages */}
           <div className="chat-box" style={{ maxHeight: "300px", overflowY: "auto", marginTop: "20px" }}>
             {messages.map((message, index) => (
-              <div key={index} className={message.role}>
-                <strong>{message.role === "user" ? "You" : "Assistant"}: </strong>
-                <p>{message.content}</p>
+              <div key={index} className="message-container">
+                <div
+                  className={message.role === "user" ? "user-message" : "assistant-message"}
+                >
+                  <strong>{message.role === "user" ? "You" : "Assistant"}: </strong>
+                  <p>{message.content}</p>
+                </div>
               </div>
             ))}
           </div>
