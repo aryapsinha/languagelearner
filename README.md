@@ -59,10 +59,10 @@ Through continuous communication, adaptability, and creative problem-solving, we
 ## Environment set up
 - React
 - Node.js
-npm install openai
-npm install bootstrap
-npm install express
-npm install dotenv
-npm install web-vitals
-npm install axios
-npm install concurrently
+- npm install openai
+- npm install bootstrap
+- npm install express
+- npm install dotenv
+- npm install web-vitals
+- npm install axios
+- npm install concurrently
