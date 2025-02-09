@@ -37,26 +37,26 @@ Through continuous communication, adaptability, and creative problem-solving, we
 
 ## Accomplishments that we're proud of
 
-- Personalized AI Chatbot – Successfully integrated OpenAI’s API to create a chatbot that engages users in dynamic conversations.
+- <bold>Personalized AI Chatbot</bold> – Successfully integrated OpenAI’s API to create a chatbot that engages users in dynamic conversations.
 
-- Customizable Chrome Extension – Built a Chrome extension that allows users to personalize their learning with real-world vocabulary and provides real-time translations.
+- <bold>Customizable Chrome Extension</bold> – Built a Chrome extension that allows users to personalize their learning with real-world vocabulary and provides real-time translations.
 
-- Seamless Vocabulary Integration – Streamlined chatbot interactions by enabling users to star specific terms they want to practice in conversation.
+- <bold>Seamless Vocabulary Integration</bold> – Streamlined chatbot interactions by enabling users to star specific terms they want to practice in conversation.
 
 
 ## What we learned
-- Full-Stack Development – Gained experience in building a web application using Node.js and React, while refining our HTML/CSS skills with tools like Bootstrap.
+- <bold>Full-Stack Development</bold> – Gained experience in building a web application using Node.js and React, while refining our HTML/CSS skills with tools like Bootstrap.
 
-- AI Integration – Learned to leverage OpenAI’s API to develop a chatbot tailored for language learning, seamlessly incorporating user-selected vocabulary into conversations.
+- <bold>AI</bold> Integration – Learned to leverage OpenAI’s API to develop a chatbot tailored for language learning, seamlessly incorporating user-selected vocabulary into conversations.
 
-- Version Control & Package Management – Improved our ability to manage packages and environments efficiently using GitHub.
+- <bold>Version Control & Package Management</bold> – Improved our ability to manage packages and environments efficiently using GitHub.
 
-## What's next for Found 
+## What's next for Found in Translation
 - Audio/voice chatbot
 - Vocabulary defintions
 - Starred terms
 
-# <bold>Environment Set Up</bold>
+## Environment Set Up
 install openai
 node.js
 React
