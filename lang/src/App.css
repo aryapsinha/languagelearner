@@ -36,3 +36,146 @@
     transform: rotate(360deg);
   }
 }
+
+.language-label-container {
+  padding-bottom: 5px;
+}
+
+.language-choice-container {
+  padding-bottom: 5px;
+}
+
+.vocabulary-words-container {
+  padding-bottom: 20px;
+}
+
+.light-blue-button {
+  background-color: #ADD8E6;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.light-blue-button:hover {
+  background-color: #87CEEB; /* Slightly darker blue on hover */
+}
+
+/* Add these styles to your App.css or the appropriate CSS file */
+
+.starred-words-input {
+  padding: 5px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #f0f8ff;  /* Light blue background */
+  min-width: 200px;           /* Minimum width */
+  width: auto;                /* Width will be adjusted dynamically */
+  transition: width 0.3s ease;  /* Smooth transition for resizing */
+  display: inline-block;
+}
+
+.starred-words-container {
+  display: flex;
+  align-items: center;
+  margin-top: 2px;
+}
+
+.starred-words-input[readonly] {
+  cursor: not-allowed;
+  background-color: #e9ecef;  /* Lighter background for readonly */
+}
+
+/* Add these styles to your App.css or the appropriate CSS file */
+
+/* Style for the language input field */
+.language-input {
+  padding: 5px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #f0f8ff;  /* Light blue background */
+  min-width: 200px;           /* Minimum width */
+  width: auto;                /* Width adjusts dynamically */
+  transition: width 0.3s ease;  /* Smooth transition for resizing */
+  display: inline-block;
+}
+
+.language-input-container {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.language-input:focus {
+  border-color: #5c9ded; /* Highlighted border color when the input is focused */
+  outline: none;
+}
+
+/* Style for the Send button */
+.send-button {
+  padding: 12px 20px;
+  background-color: #4e75af;  /* Green background */
+  color: white;
+  border: none;
+  border-radius: 8px;         /* Rounded corners */
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;  /* Smooth transition effects */
+}
+
+.send-button:hover {
+  background-color: #496da3;  /* Darker green on hover */
+  transform: translateY(-2px);  /* Lift effect on hover */
+}
+
+.send-button:active {
+  background-color: #436597;  /* Even darker green on active press */
+  transform: translateY(0);    /* Reset the transform when clicked */
+}
+
+.send-button:focus {
+  outline: none;  /* Remove the default focus outline */
+  box-shadow: 0 0 5px 2px rgba(72, 176, 255, 0.7);  /* Green glow on focus */
+}
+
+.message-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.user-message {
+  align-self: flex-end; /* Align user messages to the right */
+  background-color: #d0e9f1; /* Light green background for user */
+  padding: 10px;
+  padding-right: 20px; /* Add extra space inside the box on the right */
+  border-radius: 5px;
+  margin: 5px 0;
+  min-width: 100px; /* Ensure the message box doesn’t shrink too much */
+}
+
+.assistant-message {
+  align-self: flex-start; /* Align assistant messages to the left */
+  background-color: #f5f5f5; /* Light gray background for assistant */
+  padding: 10px;
+  border-radius: 5px;
+  margin: 5px 0;
+}
+
+.select-language {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  font-size: 16px;
+  color: #333;
+  margin-left: 10px;
+  width: 200px; /* You can adjust the width to fit your needs */
+  transition: border-color 0.3s, background-color 0.3s; /* Smooth transition for hover/focus */
+}
+
+.select-language:focus {
+  border-color: #007bff;
+  background-color: #f1faff;
+  outline: none; /* Remove default outline */
+}
