@@ -1,9 +1,11 @@
+
 import logo from './logo.svg';
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios'
 import { useState } from 'react';
 import './App.css';
+import { useEffect } from 'react';
 
 function NewRow({eng, span, source}) {
   return (
@@ -26,14 +28,36 @@ function App() {
   const [language, setLanguage] = useState("");
   const [words, setWords] = useState("");
   const [savedTerms, setSavedTerms] = useState([]);
-
+  
   useEffect(() => {
-    // Retrieve the saved terms from local storage
-    chrome.storage.local.get('savedTerms', function (result) {
-      if (result.savedTerms) {
-        setSavedTerms(result.savedTerms);
-      }
-    });
+    // Load saved terms from localStorage if any
+    const saved = localStorage.getItem('savedTerms');
+    if (saved) {
+      setSavedTerms(JSON.parse(saved)); // Parse and set state
+    }
+
+    // Listen for a custom event that signals saving a term
+    const handleSaveTerm = (event) => {
+      console.log("handling")
+      const { selectedText, translatedText } = event.detail;
+
+      // Save the new term into localStorage and state
+      const newTerm = { selectedText, translatedText };
+      setSavedTerms((prevTerms) => {
+        const updatedTerms = [...prevTerms, newTerm];
+        localStorage.setItem('savedTerms', JSON.stringify(updatedTerms)); // Update localStorage
+        return updatedTerms; // Update state
+      });
+    };
+
+    // Add event listener for 'saveTerm' event
+    console.log("yoi")
+    document.addEventListener('saveTerm', handleSaveTerm);
+
+    // Cleanup the event listener when the component is unmounted
+    return () => {
+      document.removeEventListener('saveTerm', handleSaveTerm);
+    };
   }, []);
 
   const startConversation = async () => {
@@ -127,8 +151,13 @@ function App() {
               </thead>
               <tbody>
               {savedTerms.map((term, index) => (
-                <NewRow key={index} eng={term.selectedText} span={term.translatedText} source="url" />
-              ))} 
+                <NewRow
+                  key={index}
+                  eng={term.selectedText}
+                  span={term.translatedText}
+                  source="url" // Or change to dynamic source if needed
+                />
+              ))}
               </tbody>
           </table>
         </div>
