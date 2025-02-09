@@ -12,11 +12,18 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log('Translated Text:', translatedText);
 
         // Save the terms to local storage
-        chrome.storage.local.get({ savedTerms: [] }, function (result) {
-            const savedTerms = result.savedTerms;
-            savedTerms.push({ selectedText, translatedText });
-            chrome.storage.local.set({ savedTerms }, function () {
-                console.log('Term saved');
+        // Get the URL of the active tab
+        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+            const activeTab = tabs[0];
+            const url = activeTab.url;
+            console.log('URL:', url);
+
+            chrome.storage.local.get({ savedTerms: [] }, function (result) {
+                const savedTerms = result.savedTerms;
+                savedTerms.push({ selectedText, translatedText, url });
+                chrome.storage.local.set({ savedTerms }, function () {
+                    console.log('Term saved');
+                });
             });
         });
     });
