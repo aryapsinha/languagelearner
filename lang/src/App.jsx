@@ -23,7 +23,28 @@ function NewRow({eng, span, source}) {
 function App() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
+  const [language, setLanguage] = useState("");
+  const [words, setWords] = useState("");
 
+  const startConversation = async () => {
+    if (!language || !words) {
+      alert("Please provide both language and vocabulary words.");
+      return;
+    }
+    
+    try {
+      // Send language and words to the backend to initialize conversation
+      const response = await axios.post("http://localhost:4000/start-conversation", {
+        language: language,
+        words: words,
+      });
+      
+      // Set the assistant's first message in the conversation history
+      setMessages([{ role: "assistant", content: response.data.message }]);
+    } catch (error) {
+      console.error("Error starting conversation:", error);
+    }
+  };
 
 
   const sendMessage = async () => {
@@ -33,10 +54,13 @@ function App() {
     setMessages([...messages, { role: "user", content: input }]);
   
     try {
+      console.log("hello");
       // Send the message to the backend server (make sure to use the correct backend URL)
       const response = await axios.post("http://localhost:4000/chat", {
         messages: [...messages, { role: "user", content: input }],
       });
+
+      console.log(response.data)
   
       // Add assistant response to the messages state
       setMessages([
@@ -49,6 +73,12 @@ function App() {
     }
   
     setInput(""); // Clear the input
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      sendMessage();
+    }
   };
 
   /*return (
@@ -91,23 +121,52 @@ function App() {
               </tbody>
           </table>
         </div>
-        <div className = "col-6">
+        <div className="col-6">
           <h1>Chatbot</h1>
-          <div className="chat-box">
+
+          {/* Language and vocabulary input fields */}
+          <div>
+            <label>Language: </label>
+            <input
+              type="text"
+              placeholder="Enter the language you are learning"
+              value={language}
+              onChange={(e) => setLanguage(e.target.value)}
+            />
+          </div>
+          <div>
+            <label>Vocabulary words (comma-separated): </label>
+            <input
+              type="text"
+              placeholder="Enter vocabulary words"
+              value={words}
+              onChange={(e) => setWords(e.target.value)}
+            />
+          </div>
+          <button onClick={startConversation}>Start Conversation</button>
+
+          {/* Chatbox for displaying messages */}
+          <div className="chat-box" style={{ maxHeight: "300px", overflowY: "auto", marginTop: "20px" }}>
             {messages.map((message, index) => (
               <div key={index} className={message.role}>
-                <strong>{message.role}: </strong>{message.content}
+                <strong>{message.role === "user" ? "You" : "Assistant"}: </strong>
+                <p>{message.content}</p>
               </div>
             ))}
           </div>
 
-          <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyPress={(e) => e.key === "Enter" && sendMessage()}
-          />
-          <button onClick={sendMessage}>Send</button>
+          {/* Input field for user to send a message */}
+          <div style={{ marginTop: "20px" }}>
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyPress={handleKeyPress}
+              placeholder="Type a message..."
+              style={{ width: "80%", padding: "10px" }}
+            />
+            <button onClick={sendMessage} style={{ padding: "10px" }}>Send</button>
+          </div>
         </div>
       </div>
     </div>
