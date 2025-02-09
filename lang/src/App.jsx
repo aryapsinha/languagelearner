@@ -25,6 +25,16 @@ function App() {
   const [input, setInput] = useState("");
   const [language, setLanguage] = useState("");
   const [words, setWords] = useState("");
+  const [savedTerms, setSavedTerms] = useState([]);
+
+  useEffect(() => {
+    // Retrieve the saved terms from local storage
+    chrome.storage.local.get('savedTerms', function (result) {
+      if (result.savedTerms) {
+        setSavedTerms(result.savedTerms);
+      }
+    });
+  }, []);
 
   const startConversation = async () => {
     if (!language || !words) {
@@ -116,8 +126,9 @@ function App() {
                 </tr>
               </thead>
               <tbody>
-                <NewRow className="tab" eng="Hello" span="Hola" source="url" />
-                <NewRow className="tab" eng="Bye" span="Adios" source="url" />
+              {savedTerms.map((term, index) => (
+                <NewRow key={index} eng={term.selectedText} span={term.translatedText} source="url" />
+              ))} 
               </tbody>
           </table>
         </div>
