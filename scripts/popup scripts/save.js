@@ -17,6 +17,9 @@ document.addEventListener('DOMContentLoaded', function () {
             savedTerms.push({ selectedText, translatedText });
             chrome.storage.local.set({ savedTerms }, function () {
                 console.log('Term saved');
+                const event = new CustomEvent('savedTermsUpdated', { detail: savedTerms });
+                document.dispatchEvent(event); // You can also target specific elements
+                console.log("dispatched")
             });
         });
     });
