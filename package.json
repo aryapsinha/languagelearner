@@ -3,7 +3,8 @@
     "scripts": {
         "client": "npm start --prefix ./lang",
         "server": "npm start --prefix ./scripts/ai",
-        "start": "concurrently \"npm run server\" \"npm run client\""
+        "start": "concurrently \"npm run server\" \"npm run client\"",
+        "build": "npm run build --prefix ./lang"
     },
     "devDependencies": {
         "concurrently": "^7.6.0"
