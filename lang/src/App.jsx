@@ -1,9 +1,11 @@
+
 import logo from './logo.svg';
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios'
 import { useState } from 'react';
 import './App.css';
+import { useEffect } from 'react';
 
 function NewRow({ eng, span, source, onStarClick, isStarred }) {
   return (
@@ -31,6 +33,7 @@ function App() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [language, setLanguage] = useState("");
+
   const [selectedWords, setSelectedWords] = useState([]);
   const [selectedLanguage, setSelectedLanguage] = useState("spanish");
 
@@ -63,6 +66,43 @@ function App() {
       return [...prevSelected, word];
     });
   };
+==
+  
+  //attempt to use local storage
+  const [words, setWords] = useState("");
+  const [savedTerms, setSavedTerms] = useState([]);
+  
+  useEffect(() => {
+    // Load saved terms from localStorage if any
+    const saved = localStorage.getItem('savedTerms');
+    if (saved) {
+      setSavedTerms(JSON.parse(saved)); // Parse and set state
+    }
+
+    // Listen for a custom event that signals saving a term
+    const handleSaveTerm = (event) => {
+      console.log("handling")
+      const { selectedText, translatedText } = event.detail;
+
+      // Save the new term into localStorage and state
+      const newTerm = { selectedText, translatedText };
+      setSavedTerms((prevTerms) => {
+        const updatedTerms = [...prevTerms, newTerm];
+        localStorage.setItem('savedTerms', JSON.stringify(updatedTerms)); // Update localStorage
+        return updatedTerms; // Update state
+      });
+    };
+
+    // Add event listener for 'saveTerm' event
+    console.log("yoi")
+    document.addEventListener('saveTerm', handleSaveTerm);
+
+    // Cleanup the event listener when the component is unmounted
+    return () => {
+      document.removeEventListener('saveTerm', handleSaveTerm);
+    };
+  }, []);
+>>
 
   const startConversation = async () => {
     if (!language || !selectedWords.length) {
@@ -137,6 +177,7 @@ function App() {
               {/* Add more options here */}
             </select>
           </div>
+
           <table className="table table-bordered table-striped">
             <thead>
               <tr>
@@ -158,6 +199,7 @@ function App() {
                 />
               ))}
             </tbody>
+
           </table>
         </div>
         <div className="col-6 pt-4">
