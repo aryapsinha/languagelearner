@@ -6,16 +6,36 @@
       #popup-content {
         white-space: nowrap;
       }
+
+      p {
+        color: gray;
+      }
+
+      #chat-button-container {
+        display: flex;
+        justify-content: right; /* Center horizontally */
+        align-items: right; /* Center vertically */
+      }
+
+      #save-button-container {
+        display: flex;
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+      }
     </style>
   </head>
   <body>
     <div id="popup-content">
-      <button id="chat-button">Chat</button>
-      <h3 id="detected-language">Term:</h3>
-      <p id="selected-text">No text selected.</p>
-      <h3>English:</h3>
-      <p id="translated-text">No text selected.</p>
-      <button id="save-button">Save Term</button>
+      <div id="chat-button-container">
+        <button id="chat-button">Chat</button>
+      </div>
+      <p id="detected-language">Term</p>
+      <h3 id="selected-text">No text selected.</h3>
+      <p>English</p>
+      <h3 id="translated-text">No text selected.</h3>
+      <div id="save-button-container">
+        <button id="save-button">Save Term</button>
+      </div>
     </div>
     <script src="update.js"></script>
     <script src="save.js"></script>

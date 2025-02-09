@@ -1,8 +1,6 @@
 // background.js - receive message from content.js, opens popup & send message to update.js
 console.log('background.js loaded');
 
-let languageMap = {};
-
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.type === 'highlight') {
         console.log('Message received:', message);
