@@ -2,6 +2,7 @@
   "dependencies": {
     "dotenv": "^16.4.7",
     "ejs": "^3.1.10",
+    "express": "^4.21.2",
     "openai": "^4.83.0",
     "puppeteer": "^23.5.0"
   },
@@ -10,7 +11,10 @@
   "version": "1.0.0",
   "main": "chatbot.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "client": "react-scripts start",
+    "server": "node server.js"
   },
   "author": "",
   "license": "ISC",
