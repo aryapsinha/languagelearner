@@ -22,3 +22,8 @@ table, tr, td{
 .table-bordered td, .table-bordered th {
   border: 1px solid #000;
 }
+
+.chat-box {
+  padding-left: 10px;
+  padding-top: 15px;
+}

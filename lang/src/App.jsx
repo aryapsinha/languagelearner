@@ -5,29 +5,55 @@ import axios from 'axios'
 import { useState } from 'react';
 import './App.css';
 
-function NewRow({eng, span, source}) {
+function NewRow({ eng, span, source, onStarClick, isStarred }) {
   return (
-      <tr>
-          <td>
-              {eng}
-          </td>
-          <td>
-              {span}
-          </td>
-          <td>
-              {source}
-          </td>
-      </tr>
-  )
+    <tr>
+      <td>{eng}</td>
+      <td>{span}</td>
+      <td>{source}</td>
+      <td>
+        {/* Display star icon, and add a class if it's starred */}
+        <span
+          onClick={() => onStarClick(span)} // Star toggles based on Spanish word
+          style={{
+            cursor: 'pointer',
+            color: isStarred ? 'gold' : 'gray', // Change color if starred
+          }}
+        >
+          ★
+        </span>
+      </td>
+    </tr>
+  );
 }
+
 function App() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [language, setLanguage] = useState("");
-  const [words, setWords] = useState("");
+  const [selectedWords, setSelectedWords] = useState([]);
+
+  const vocabulary = [
+    { eng: "Hello", span: "Hola", source: "url" },
+    { eng: "Cat", span: "Gato", source: "url" },
+    { eng: "Cucaracha", span: "Cockroach", source: "url" },
+    { eng: "Sacapuntas", span: "Pencil Sharpener", source: "url" },
+  ];
+
+  // Handle star click: Toggle the selected state based on Spanish word
+  const handleStarClick = (word) => {
+    setSelectedWords((prevSelected) => {
+      // If the word is already selected, remove it (unstared)
+      if (prevSelected.includes(word)) {
+        return prevSelected.filter((item) => item !== word);
+      }
+      // Otherwise, add it to the list (starred)
+      return [...prevSelected, word];
+    });
+  };
 
   const startConversation = async () => {
-    if (!language || !words) {
+    if (!language || !selectedWords.length) {
       alert("Please provide both language and vocabulary words.");
       return;
     }
@@ -36,7 +62,7 @@ function App() {
       // Send language and words to the backend to initialize conversation
       const response = await axios.post("http://localhost:4000/start-conversation", {
         language: language,
-        words: words,
+        words: selectedWords.join(", "),
       });
       
       // Set the assistant's first message in the conversation history
@@ -101,8 +127,6 @@ function App() {
   );*/
   return (
     <div className = "container">
-      
-      
       <div className = "row justify-content-left">
         <div className = "col-6">
           <br />
@@ -113,12 +137,21 @@ function App() {
                   <th>English</th>
                   <th>Spanish</th>
                   <th>Source</th>
+                  <th>Star</th>
                 </tr>
               </thead>
               <tbody>
-                <NewRow className="tab" eng="Hello" span="Hola" source="url" />
-                <NewRow className="tab" eng="Bye" span="Adios" source="url" />
-              </tbody>
+  {vocabulary.map((word, index) => (
+    <NewRow
+      key={index}
+      eng={word.eng}
+      span={word.span}
+      source={word.source}
+      onStarClick={handleStarClick}
+      isStarred={selectedWords.includes(word.span)} // Check if the Spanish word is starred
+    />
+  ))}
+</tbody>
           </table>
         </div>
         <div className="col-6">
@@ -135,12 +168,12 @@ function App() {
             />
           </div>
           <div>
-            <label>Vocabulary words (comma-separated): </label>
+            <label>Vocabulary words (star from table): </label>
             <input
               type="text"
-              placeholder="Enter vocabulary words"
-              value={words}
-              onChange={(e) => setWords(e.target.value)}
+              placeholder="Starred words"
+              value={selectedWords.join(", ")}
+              readOnly
             />
           </div>
           <button onClick={startConversation}>Start Conversation</button>
