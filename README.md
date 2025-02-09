@@ -2,11 +2,17 @@
 
 ## What it does
 
-Found in Translation (a play on the saying lost in translation) is a streamlined language learning tool that allows users to reinforce vocabulary from everyday web browsing through conversational practice. The Chrome extension detects the language of highlihgted text and translates it to English. Users are then able to save terms they wish to practice using in conversation. Saved terms and an interactable AI chatbot are available in a web app.
+Found in Translation (a play on lost in translation) is a streamlined language learning tool that helps users reinforce vocabulary from everyday web browsing through conversational practice. The Chrome extension detects the language of highlighted text and translates it into English. Users can then save terms they want to practice in conversation. These saved terms, along with an interactive AI chatbot, are accessible via a companion web app.
 
 ## Inspiration
 
-We identified three main issues that inspired us to create this language learning tool. First, many language learners want to learn vocabulary terms that are personalized and applicable in the context of everyday life. Secondly, apps like Quizlet require users to manually compile flashcards, which can be a redundant and time-consuming process. Moreover, traditional language learning apps often lack interactive and contextual conversation practice, making it difficult for learners to apply new vocabulary in real-world scenarios. By integrating an AI chatbot that dynamically engages users with their saved words, Found in Translation bridges the gap between passive learning and active usage, fostering deeper language retention.
+We identified three key challenges that inspired us to create this language learning tool:
+
+1. Personalized Vocabulary – Many language learners want to focus on words and phrases relevant to their daily lives, rather than generic vocabulary lists.
+2. Inefficient Study Methods – Apps like Quizlet require users to manually create flashcards, which can be repetitive and time-consuming.
+3. Lack of Contextual Practice – Traditional language learning apps often fail to provide interactive, real-world conversation practice, making it harder to apply new vocabulary effectively.
+
+Found in Translation addresses these issues by integrating an AI chatbot that dynamically engages users with their saved words. This approach bridges the gap between passive learning and active usage, fostering deeper language retention.
 
 ## How we built it
 
