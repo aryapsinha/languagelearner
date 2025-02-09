@@ -5,8 +5,8 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.type === 'highlight') {
         console.log('Message received:', message);
         chrome.action.openPopup(() => {
-            translateText(message.text).then(translatedText => {
-                chrome.runtime.sendMessage({ type: 'highlight', text: message.text, translatedText: translatedText });
+            translateText(message.text).then(({ translatedText, detectedLanguage }) => {
+                chrome.runtime.sendMessage({ type: 'highlight', text: message.text, translatedText: translatedText, detectedLanguage: detectedLanguage });
             }).catch(error => {
                 console.error('Translation error:', error);
             });
@@ -20,13 +20,15 @@ function translateText(text) {
             if (data.apiKey) {
                 console.log("API Key:", data.apiKey);
 
-                const url = `https://translation.googleapis.com/language/translate/v2?key=${data.apiKey}`;
+                const detectUrl = `https://translation.googleapis.com/language/translate/v2/detect?key=${data.apiKey}`;
+                const translateUrl = `https://translation.googleapis.com/language/translate/v2?key=${data.apiKey}`;
+
                 const requestData = {
-                    q: text,
-                    target: 'en'
+                    q: text
                 };
 
-                fetch(url, {
+                // Detect the language of the input text
+                fetch(detectUrl, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -35,15 +37,43 @@ function translateText(text) {
                 })
                 .then(response => response.json())
                 .then(data => {
-                    if (data.data && data.data.translations && data.data.translations.length > 0) {
-                        resolve(data.data.translations[0].translatedText);
+                    if (data.data && data.data.detections && data.data.detections.length > 0) {
+                        const detectedLanguage = data.data.detections[0][0].language;
+                        console.log("Detected Language:", detectedLanguage);
+
+                        // Translate the text to English
+                        const translateRequestData = {
+                            q: text,
+                            target: 'en'
+                        };
+
+                        fetch(translateUrl, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(translateRequestData)
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.data && data.data.translations && data.data.translations.length > 0) {
+                                const translatedText = data.data.translations[0].translatedText;
+                                resolve({ translatedText, detectedLanguage });
+                            } else {
+                                reject('Translation failed');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error translating text:', error);
+                            reject('Translation error');
+                        });
                     } else {
-                        reject('Translation failed');
+                        reject('Language detection failed');
                     }
                 })
                 .catch(error => {
-                    console.error('Error translating text:', error);
-                    reject('Translation error');
+                    console.error('Error detecting language:', error);
+                    reject('Language detection error');
                 });
             } else {
                 console.error("API Key not found!");
