@@ -1,7 +1,8 @@
 // server.js
-import express from "./node_modules/express/index.js";
+import express from "../../lang/node_modules/express/index.js";
 import OpenAI from "openai";
 import dotenv from "dotenv";
+import cors from 'cors'; 
 
 // Load environment variables
 dotenv.config();
@@ -16,6 +17,12 @@ const port = 4000;
 
 app.use(express.json());
 
+
+app.use(cors({
+  origin: 'http://localhost:3000', // Frontend origin (React app)
+  methods: 'GET,POST',            // Allowing only POST requests
+  allowedHeaders: 'Content-Type,Authorization'
+}));
 // Endpoint to handle chat requests
 app.post("/chat", async (req, res) => {
   const { messages } = req.body;

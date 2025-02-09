@@ -28,16 +28,16 @@ function App() {
 
   const sendMessage = async () => {
     if (!input) return;
-
+  
     // Add the user message to the messages state
     setMessages([...messages, { role: "user", content: input }]);
-
+  
     try {
-      // Send the message to the backend server
-      const response = await axios.post("/chat", {
+      // Send the message to the backend server (make sure to use the correct backend URL)
+      const response = await axios.post("http://localhost:4000/chat", {
         messages: [...messages, { role: "user", content: input }],
       });
-
+  
       // Add assistant response to the messages state
       setMessages([
         ...messages,
@@ -47,7 +47,7 @@ function App() {
     } catch (error) {
       console.error("Error sending message:", error);
     }
-
+  
     setInput(""); // Clear the input
   };
 
