@@ -22,13 +22,16 @@ Figma -- interactive UI mockup
 - Formatted interface of each page
 - See design here: [https://www.figma.com/files/team/1470133136368142001/project/336378762/Team-project?fuid=1289369928410265773]
 
-Programmed using React to do web development. - Code can be seen in this Github Repo
+
+Built a web application in React to serve as the personalized language learning hub - Code can be seen in this Github Repo
 - Broke our program into smaller, reusable components.
-- Built a clean UI with a table of vocabulary terms and interactive chatbot.
+- Built a Node.js server to host a personalized chatbot on the application
+- Built a clean UI with a table of vocabulary terms and interactive chatbot using Bootstrap
+- Added a "starred" feature to choose specific terms to tailor the chatbot's conversation
 
 Connected to OpenAI API to integrate a conversational assistant into Found in Translation web app.
-[Write stuff about chrome extensions & localstorage]
 
+Built a Chrome Extension with Google Translate API to detect the language of and translate any highlighted word, and then save to local storage for further practice on the web application. 
 ## Challenges we ran into
 
 One of our biggest challenges was integrating multiple components—Chrome extension, stored data, web app, and chatbot—into a seamless and cohesive product. To tackle this, we embraced iterative development, merged frequently, and collaborated effectively. This approach taught us how to divide and conquer while leveraging the strengths of our teammates.
@@ -45,7 +48,7 @@ Through continuous communication, adaptability, and creative problem-solving, we
 
 
 ## What we learned
-- <bold>Full-Stack Development</bold> – Gained experience in building a web application using Node.js and React, while refining our HTML/CSS skills with tools like Bootstrap.
+- <bold>Full-Stack Development</bold> – Gained experience in building a web application using Node.js for the backend and React for the frontend, while refining our HTML/CSS skills with tools like Bootstrap.
 
 - <bold>AI</bold> Integration – Learned to leverage OpenAI’s API to develop a chatbot tailored for language learning, seamlessly incorporating user-selected vocabulary into conversations.
 
@@ -54,7 +57,6 @@ Through continuous communication, adaptability, and creative problem-solving, we
 ## What's next for Found in Translation
 - Audio/voice chatbot
 - Vocabulary defintions
-- Starred terms
 
 ## Environment set up
 - React
