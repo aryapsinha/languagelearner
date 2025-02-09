@@ -1,0 +1,11 @@
+{
+    "name": "root",
+    "scripts": {
+        "client": "npm start --prefix ./lang",
+        "server": "npm start --prefix ./scripts/ai",
+        "start": "concurrently \"npm run server\" \"npm run client\""
+    },
+    "devDependencies": {
+        "concurrently": "^7.6.0"
+    }
+}
