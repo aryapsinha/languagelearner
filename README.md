@@ -37,19 +37,19 @@ Through continuous communication, adaptability, and creative problem-solving, we
 
 ## Accomplishments that we're proud of
 
-Personalized AI Chatbot – Successfully integrated OpenAI’s API to create a chatbot that engages users in dynamic conversations.
+- Personalized AI Chatbot – Successfully integrated OpenAI’s API to create a chatbot that engages users in dynamic conversations.
 
-Customizable Chrome Extension – Built a Chrome extension that allows users to personalize their learning with real-world vocabulary and provides real-time translations.
+- Customizable Chrome Extension – Built a Chrome extension that allows users to personalize their learning with real-world vocabulary and provides real-time translations.
 
-Seamless Vocabulary Integration – Streamlined chatbot interactions by enabling users to star specific terms they want to practice in conversation.
+- Seamless Vocabulary Integration – Streamlined chatbot interactions by enabling users to star specific terms they want to practice in conversation.
 
 
 ## What we learned
-Full-Stack Development – Gained experience in building a web application using Node.js and React, while refining our HTML/CSS skills with tools like Bootstrap.
+- Full-Stack Development – Gained experience in building a web application using Node.js and React, while refining our HTML/CSS skills with tools like Bootstrap.
 
-AI Integration – Learned to leverage OpenAI’s API to develop a chatbot tailored for language learning, seamlessly incorporating user-selected vocabulary into conversations.
+- AI Integration – Learned to leverage OpenAI’s API to develop a chatbot tailored for language learning, seamlessly incorporating user-selected vocabulary into conversations.
 
-Version Control & Package Management – Improved our ability to manage packages and environments efficiently using GitHub.
+- Version Control & Package Management – Improved our ability to manage packages and environments efficiently using GitHub.
 
 ## What's next for Found 
 - Audio/voice chatbot
