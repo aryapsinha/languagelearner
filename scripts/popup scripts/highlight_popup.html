@@ -1,13 +1,24 @@
 <!-- highlight_popup.html -->
 <!DOCTYPE html>
 <html>
+  <head>
+    <style>
+      #popup-content {
+        white-space: nowrap;
+      }
+    </style>
+  </head>
   <body>
     <div id="popup-content">
-      <h3>Selected Word:</h3>
+      <button id="chat-button">Chat</button>
+      <h3 id="detected-language">Term:</h3>
       <p id="selected-text">No text selected.</p>
-      <h3>Translation:</h3>
+      <h3>English:</h3>
       <p id="translated-text">No text selected.</p>
+      <button id="save-button">Save Term</button>
     </div>
     <script src="update.js"></script>
+    <script src="save.js"></script>
+    <!-- <script src="chat.js"></script> -->
   </body>
 </html>
