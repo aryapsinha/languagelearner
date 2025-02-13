@@ -193,9 +193,16 @@ function App() {
             </div>
 
           </div>
-          <button onClick={startConversation} className="light-blue-button">
+          <button
+            onClick={() => {
+              console.log("Button clicked!");
+              startConversation();
+            }}
+            className="light-blue-button"
+          >
             Start Conversation
           </button>
+
 
           {/* Chatbox for displaying messages */}
           <div className="chat-box" style={{ maxHeight: "300px", overflowY: "auto", marginTop: "20px" }}>
