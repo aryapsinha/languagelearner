@@ -10,7 +10,13 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
             translateText(message.text).then(({ translatedText, detectedLanguage }) => {
                 const languageName = new Intl.DisplayNames(['en'], { type: 'language' }).of(detectedLanguage).split(' ')[0];
                 console.log('Language Name:', languageName);
-                chrome.runtime.sendMessage({ type: 'highlight', text: message.text, translatedText: translatedText, detectedLanguage: languageName });
+                chrome.runtime.sendMessage({ 
+                    type: 'highlight', 
+                    text: message.text, 
+                    translatedText: translatedText, 
+                    detectedLanguage: languageName,
+                    url: message.url // Pass the page URL here
+                });
             }).catch(error => {
                 console.error('Translation error:', error);
             });

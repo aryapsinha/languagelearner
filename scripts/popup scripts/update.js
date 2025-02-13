@@ -9,5 +9,7 @@ chrome.runtime.onMessage.addListener((message) => {
         document.getElementById('selected-text').textContent = message.text;
         console.log('Updating popup with translated text:', message.translatedText);
         document.getElementById('translated-text').textContent = message.translatedText;
+        console.log('Setting page URL:', message.url);
+        document.getElementById('page-url').textContent = message.url;
     }
 });
