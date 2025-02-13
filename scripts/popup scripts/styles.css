@@ -1,0 +1,53 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    width: 200px; /* Adjust the popup width */
+    padding: 10px;
+    background-color: #f8f9fa;
+  }
+  
+  #popup-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  h3 {
+    margin: 10px 0 5px;
+    color: #333;
+  }
+  
+  p {
+    background: white;
+    padding: 8px;
+    border-radius: 5px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 220px;
+    word-wrap: break-word;
+}
+  
+  button {
+    background-color: #4e75af;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #436597;
+  }
+
+  button:active {
+    background-color: #344e75;
+  }
+
+  button:focus {
+    outline: none; 
+    box-shadow: 0 0 5px 2px rgba(72, 176, 255, 0.7); 
+  }
+  
