@@ -66,7 +66,7 @@ function App() {
       return [...prevSelected, word];
     });
   };
-==
+
   
   //attempt to use local storage
   const [words, setWords] = useState("");
@@ -102,7 +102,7 @@ function App() {
       document.removeEventListener('saveTerm', handleSaveTerm);
     };
   }, []);
->>
+
 
   const startConversation = async () => {
     if (!language || !selectedWords.length) {
