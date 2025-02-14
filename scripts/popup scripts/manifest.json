@@ -1,22 +1,36 @@
 {
-    "name": "Found in Translation",
-    "description": "Learn with the language lords.",
-    "version": "1.0",
-    "manifest_version": 3,
-    "permissions": [
-      "activeTab", "storage", "tabs"
-    ],
-    "background" : {
-      "service_worker": "background.js"
-    },
-    "content_scripts": [
-      {
-        "matches": ["<all_urls>"],
-        "js": ["content.js"]
-      }
-    ],
-    "action": {
-      "default_popup": "highlight_popup.html",
-      "default_icon": "hello_extensions.png"
+  "name": "Found in Translation",
+  "description": "Learn with the language lords.",
+  "version": "1.0",
+  "manifest_version": 3,
+  "permissions": [
+    "activeTab",
+    "storage",
+    "tabs"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ]
     }
+  ],
+  "icons": {
+    "16": "logo.png",
+    "48": "logo.png",
+    "128": "logo.png"
+  },
+  "action": {
+    "default_popup": "highlight_popup.html",
+    "default_icon": "logo.png"
+  },
+  "content_security_policy": {
+    "extension_pages": "default-src 'self'"
+  }
 }
